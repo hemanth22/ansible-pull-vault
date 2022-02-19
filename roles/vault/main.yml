@@ -1,16 +1,14 @@
-- hosts: localhost
-  gather_facts: true
-  tasks:
-  - name: Download hashicorp.conf
-    get_url:
-      url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-      dest: /etc/yum.repos.d/hashicorp.repo
-      mode: '755'
+---
+- name: Download hashicorp.conf
+  get_url:
+    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    dest: /etc/yum.repos.d/hashicorp.repo
+    mode: '755'
 
-  - name: Refresh the dnf cache
-    ansible.builtin.shell: dnf makecache --refresh
+- name: Refresh the dnf cache
+  ansible.builtin.shell: dnf makecache --refresh
 
-  - name: Ensure vsftpd server is installed
-    dnf:
-      name: vault
-      state: present
+- name: Ensure vsftpd server is installed
+  dnf:
+    name: vault
+    state: present
